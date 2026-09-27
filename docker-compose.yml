@@ -1,0 +1,14 @@
+services:
+  precificacao:
+    build: ../precificacao-api
+    ports:
+      - "8001:8001"
+
+  catalogo:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - PRECIFICACAO_URL=http://precificacao:8001
+    depends_on:
+      - precificacao
